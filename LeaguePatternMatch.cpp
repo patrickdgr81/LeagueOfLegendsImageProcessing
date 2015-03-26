@@ -29,8 +29,8 @@ void MatchingMethod( int, void* );
 int main( int, char** argv )
 {
   /// Load image and template
-  img = imread( argv[1], 1 );
-  templ = imread( argv[2], 1 );
+  img = imread("Screenshot.png", 1 );
+  templ = imread("HealthBar.jpg", 1 );
 
   /// Create windows
   namedWindow( image_window, WINDOW_AUTOSIZE );
