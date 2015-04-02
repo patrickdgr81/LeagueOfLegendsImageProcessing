@@ -1,9 +1,3 @@
-/**
- * @file MatchTemplate_Demo.cpp
- * @brief Sample code to use the function MatchTemplate
- * @author OpenCV team
- */
-
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include <iostream>
@@ -28,21 +22,40 @@ void MatchingMethod( int, void* );
  */
 int main( int, char** argv )
 {
+  VideoCapture cap;
+  cap.open(0);
+
+  if (!cap.isOpened())
+  {
+      cerr << "can not open camera or video file" << endl;
+      return -1;
+  }
   /// Load image and template
-  img = imread("Screenshot.png", 1 );
+
+  
+  cap >> img;
+  if (img.empty())
+    return 0;
   templ = imread("HealthBar.jpg", 1 );
 
   /// Create windows
   namedWindow( image_window, WINDOW_AUTOSIZE );
   namedWindow( result_window, WINDOW_AUTOSIZE );
 
-  /// Create Trackbar
-  const char* trackbar_label = "Method: \n 0: SQDIFF \n 1: SQDIFF NORMED \n 2: TM CCORR \n 3: TM CCORR NORMED \n 4: TM COEFF \n 5: TM COEFF NORMED";
-  createTrackbar( trackbar_label, image_window, &match_method, max_Trackbar, MatchingMethod );
+/// Create Trackbar
+const char* trackbar_label = "Method: \n 0: SQDIFF \n 1: SQDIFF NORMED \n 2: TM CCORR \n 3: TM CCORR NORMED \n 4: TM COEFF \n 5: TM COEFF NORMED";
+createTrackbar( trackbar_label, image_window, &match_method, max_Trackbar, MatchingMethod );
 
-  MatchingMethod( 0, 0 );
 
-  waitKey(0);
+ for(;;) {
+   cap >> img;
+   if (img.empty()) {
+     break;
+   }
+   MatchingMethod(0, 0 );
+   waitKey(100);
+   }
+  
   return 0;
 }
 
