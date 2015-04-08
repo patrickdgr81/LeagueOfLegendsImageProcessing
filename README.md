@@ -3,3 +3,7 @@ This project will take a screenshot of League of Legends and find out where the 
 
 Compile with 
 g++ LeaguePatternMatch.cpp -lopencv_core -lopencv_highgui -lopencv_imgproc
+
+To run with GPIO, compile with
+ g++ -O2 -Wall LeaguePatternMatch.cpp -lopencv_core -lopencv_highgui -lopencv_imgproc SimpleGPIO.cpp -o LeaguePatternMatch
+
