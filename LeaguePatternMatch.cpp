@@ -3,6 +3,13 @@
 #include <iostream>
 #include <stdio.h>
 
+//added stuff
+#include <string>
+#include <unistd.h>
+#include "SimpleGPIO.h"
+//////
+
+
 using namespace std;
 using namespace cv;
 
